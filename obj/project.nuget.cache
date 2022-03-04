@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wenwNdNpISVeGC/rR8lkB34xLZNQRMpmmAoIn3zlBCSzP8sOLl8kHfUYy6wKkTdQRVj78TYLF/6inFzvCO3gBw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Siul008\\source\\repos\\Dark souls Death Counter\\Dark souls Death Counter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Siul008\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\Siul008\\.nuget\\packages\\tesseract\\4.1.1\\tesseract.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
