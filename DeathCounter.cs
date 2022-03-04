@@ -21,7 +21,11 @@ namespace Dark_souls_Death_Counter
         string result = "";
         string filename = @"D:\DeathCounter\Deaths.txt";
         int counter = 0;
-        int memorySaver = 0;
+        Bitmap captureBitmap;
+        TesseractEngine engine;
+        Rectangle captureRectangle;
+        Graphics captureGraphics;
+        string testImagePath = @"D:\DeathCounter\Capture.jpg";
 
         public DeathCounter()
         {
@@ -31,7 +35,10 @@ namespace Dark_souls_Death_Counter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if(!Directory.Exists(@"D:\DeathCounter"))
+
+            
+
+            if (!Directory.Exists(@"D:\DeathCounter"))
             {
                 Directory.CreateDirectory(@"D:\DeathCounter");
             }
@@ -44,6 +51,7 @@ namespace Dark_souls_Death_Counter
                 using(StreamWriter sw = File.CreateText(filename))
                 {
                     sw.WriteLine("0");
+                    counter = int.Parse(File.ReadAllText(filename));
                 }
             }
         }
@@ -51,20 +59,20 @@ namespace Dark_souls_Death_Counter
         {
             try
             {
-                Bitmap captureBitmap = new Bitmap(719, 105, PixelFormat.Format64bppArgb);;
-                Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
-                Graphics captureGraphics = Graphics.FromImage(captureBitmap);
+                captureBitmap = new Bitmap(719, 105, PixelFormat.Format64bppArgb);
+                captureRectangle = Screen.AllScreens[0].Bounds;
+                captureGraphics = Graphics.FromImage(captureBitmap);
+                engine = new TesseractEngine("./tessdata", "fra", EngineMode.Default);
                 captureGraphics.CopyFromScreen(captureRectangle.Left + left, captureRectangle.Top + up, 0, 0, captureRectangle.Size);
                 captureBitmap.Save(@"D:\DeathCounter\Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                //MessageBox.Show("Screen Done");
 
-                var testImagePath = @"D:\DeathCounter\Capture.jpg";
                 var image = Pix.LoadFromFile(testImagePath);
-                TesseractEngine engine = new TesseractEngine("./tessdata", "fra", EngineMode.Default);
                 Page page = engine.Process(image, PageSegMode.Auto);
                 result = page.GetText();
-
-
+                captureBitmap = null;
+                engine = null;
+                image = null;
+                page = null;
             }
             catch (Exception ex)
             {
@@ -75,6 +83,10 @@ namespace Dark_souls_Death_Counter
         private void button1_Click(object sender, EventArgs e)
         {
             CaptureScreen();
+            if(result.Contains("VOUS AVEZ PÉRI"))
+            {
+                MessageBox.Show("Trouvé");
+            }
         }
         //AddLeft
         private void button2_Click_1(object sender, EventArgs e)
@@ -98,6 +110,7 @@ namespace Dark_souls_Death_Counter
         }
         public void AddToCounter()
         {
+            counter = int.Parse(File.ReadAllText(filename));
             counter++;
             File.WriteAllText(filename, counter.ToString());
         }
@@ -105,28 +118,19 @@ namespace Dark_souls_Death_Counter
         {
             while (true)
             {
-                if (memorySaver >= 30)
-                {
-                    GC.Collect();
-                    memorySaver = 0;
-                }
                     CaptureScreen();
-                    if (result.Contains("VOUS AVEZ PÉRI"))
+                    GC.Collect();
+                if (result.Contains("VOUS AVEZ PÉRI"))
                     {
                         AddToCounter();
-                    memorySaver++;
                         Thread.Sleep(30000);
                         result = "";
                     }
                     else
                     {
-                        memorySaver++;
-
-                        Thread.Sleep(100);
+                        Thread.Sleep(50);
                     }
                 }
-            
         }
-
     }
 }
