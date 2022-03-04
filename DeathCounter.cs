@@ -35,9 +35,6 @@ namespace Dark_souls_Death_Counter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            
-
             if (!Directory.Exists(@"D:\DeathCounter"))
             {
                 Directory.CreateDirectory(@"D:\DeathCounter");
@@ -123,7 +120,7 @@ namespace Dark_souls_Death_Counter
                 if (result.Contains("VOUS AVEZ PÉRI"))
                     {
                         AddToCounter();
-                        Thread.Sleep(30000);
+                        Thread.Sleep(10000);
                         result = "";
                     }
                     else
