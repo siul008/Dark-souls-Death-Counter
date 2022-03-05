@@ -3,8 +3,16 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>Dark_souls_Death_Counter</RootNamespace>
+    <RootNamespace>Elden_Ring_Death_Counter</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Elden ring icon.ico</ApplicationIcon>
+    <AssemblyName>Elden Ring Death Counter</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Siul008.pfx</AssemblyOriginatorKeyFile>
+    <Copyright>Siul008</Copyright>
+    <Version>1.0.1</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>

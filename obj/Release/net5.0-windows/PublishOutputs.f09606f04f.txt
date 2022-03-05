@@ -1,0 +1,13 @@
+X:\C#\DeathCounter\tessdata\eng.traineddata
+X:\C#\DeathCounter\tessdata\fra.traineddata
+X:\C#\DeathCounter\tessdata\pdf.ttf
+X:\C#\DeathCounter\Elden Ring Death Counter.exe
+X:\C#\DeathCounter\x86\leptonica-1.80.0.dll
+X:\C#\DeathCounter\x86\tesseract41.dll
+X:\C#\DeathCounter\x64\leptonica-1.80.0.dll
+X:\C#\DeathCounter\x64\tesseract41.dll
+X:\C#\DeathCounter\Elden Ring Death Counter.dll
+X:\C#\DeathCounter\Elden Ring Death Counter.deps.json
+X:\C#\DeathCounter\Elden Ring Death Counter.runtimeconfig.json
+X:\C#\DeathCounter\Elden Ring Death Counter.pdb
+X:\C#\DeathCounter\Tesseract.dll

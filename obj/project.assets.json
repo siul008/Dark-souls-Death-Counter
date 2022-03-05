@@ -116,10 +116,10 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\Siul008\\source\\repos\\Dark souls Death Counter\\Dark souls Death Counter.csproj",
-      "projectName": "Dark souls Death Counter",
+      "projectName": "Elden Ring Death Counter",
       "projectPath": "C:\\Users\\Siul008\\source\\repos\\Dark souls Death Counter\\Dark souls Death Counter.csproj",
       "packagesPath": "C:\\Users\\Siul008\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Siul008\\source\\repos\\Dark souls Death Counter\\obj\\",
