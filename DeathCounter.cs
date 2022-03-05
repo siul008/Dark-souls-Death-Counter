@@ -22,12 +22,14 @@ namespace Dark_souls_Death_Counter
         string result = "";
         
         int counter = 0;
+        int todayCounter = 0;
         Bitmap captureBitmap;
         TesseractEngine engine;
         Rectangle captureRectangle;
         Graphics captureGraphics;
        readonly string capturePath = @"D:\DeathCounter\Capture.bmp";
        readonly string filename = @"D:\DeathCounter\Deaths.txt";
+       readonly string filenameTodayDeath = @"D:\DeathCounter\TodayDeaths.txt";
 
         public DeathCounter()
         {
@@ -37,21 +39,23 @@ namespace Dark_souls_Death_Counter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             if (!Directory.Exists(@"D:\DeathCounter"))
             {
                 Directory.CreateDirectory(@"D:\DeathCounter");
             }
-            if(File.Exists(filename))
-            {
-                counter = int.Parse(File.ReadAllText(filename));
-            }
-           else
+            if(!File.Exists(filename))
             {
                 using StreamWriter sw = File.CreateText(filename);
                 sw.WriteLine("0");
-                counter = int.Parse(File.ReadAllText(filename));
             }
+            if (!File.Exists(filenameTodayDeath))
+            {
+                using StreamWriter sw = File.CreateText(filename);
+                sw.WriteLine("0");
+            }
+                counter = int.Parse(File.ReadAllText(filename));
+                todayCounter = 0;
+                File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
         }
         private void CaptureScreen()
         {
@@ -105,9 +109,10 @@ namespace Dark_souls_Death_Counter
         }
         public void AddToCounter()
         {
-            counter = int.Parse(File.ReadAllText(filename));
+            todayCounter++;
             counter++;
             File.WriteAllText(filename, counter.ToString());
+            File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
         }
         public void LaunchProgram()
         {
@@ -118,10 +123,9 @@ namespace Dark_souls_Death_Counter
                 if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
                     {
                         AddToCounter();
-                        Debug.WriteLine("Trouvé" + DateTime.Now);
+                        Debug.WriteLine("Trouvé à  " + DateTime.Now);
                         Thread.Sleep(15000);
                         result = "";
-
                     }
                     else
                     {
