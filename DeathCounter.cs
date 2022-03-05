@@ -30,6 +30,10 @@ namespace Dark_souls_Death_Counter
        readonly string capturePath = @"D:\DeathCounter\Capture.bmp";
        readonly string filename = @"D:\DeathCounter\Deaths.txt";
        readonly string filenameTodayDeath = @"D:\DeathCounter\TodayDeaths.txt";
+        static int runs = 0;
+
+
+        private static BackgroundWorker worker;
 
         public DeathCounter()
         {
@@ -87,25 +91,19 @@ namespace Dark_souls_Death_Counter
                 MessageBox.Show(result);
             }
         }
-        //AddLeft
-        private void Button2_Click_1(object sender, EventArgs e)
-        {
-            left += 10;
-        }
-        //AddTop
-        private void ButtonTest_Click(object sender, EventArgs e)
-        {
-            up += 10;
-        }
         //DisplayValue
-        private void DisplayValueButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(left + " , " + up);
+            System.Windows.Forms.Application.Exit();
         }
         //LancerProgramme
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            LaunchProgram();
+            LancerProgrammeButton.Enabled = false;
+            worker = new BackgroundWorker();
+            worker.DoWork += LaunchProgram;
+            worker.RunWorkerCompleted += WorkerLoopCompleted;
+            worker.RunWorkerAsync();
         }
         public void AddToCounter()
         {
@@ -114,24 +112,31 @@ namespace Dark_souls_Death_Counter
             File.WriteAllText(filename, counter.ToString());
             File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
         }
-        public void LaunchProgram()
+        public void LaunchProgram(object sender, DoWorkEventArgs e)
         {
-            while (true)
-            {
-                    CaptureScreen();
-                    GC.Collect();
-                if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
-                    {
-                        AddToCounter();
-                        Debug.WriteLine("Trouvé à  " + DateTime.Now);
-                        Thread.Sleep(15000);
-                        result = "";
-                    }
-                    else
-                    {
-                        Thread.Sleep(50);
-                    }
-                }
+            CaptureScreen();
+            GC.Collect();
+            if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
+              {
+                 AddToCounter();
+                 Debug.WriteLine("Trouvé à  " + DateTime.Now);
+                 Thread.Sleep(15000);
+                 result = "";
+              }
+            else
+              {
+               Thread.Sleep(50);
+              }
+        }
+        static void WorkerLoopCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            worker.RunWorkerAsync();
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            todayCounter = 0;
+            File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
         }
     }
 }
