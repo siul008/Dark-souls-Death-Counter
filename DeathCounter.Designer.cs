@@ -44,7 +44,7 @@ namespace Dark_souls_Death_Counter
             this.ScreenshotButton.TabIndex = 0;
             this.ScreenshotButton.Text = "Screenshot !";
             this.ScreenshotButton.UseVisualStyleBackColor = true;
-            this.ScreenshotButton.Click += new System.EventHandler(this.button1_Click);
+            this.ScreenshotButton.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -54,7 +54,7 @@ namespace Dark_souls_Death_Counter
             this.button2.TabIndex = 1;
             this.button2.Text = "AddLeft";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
             // 
             // buttonTest
             // 
@@ -64,7 +64,7 @@ namespace Dark_souls_Death_Counter
             this.buttonTest.TabIndex = 2;
             this.buttonTest.Text = "Add Top";
             this.buttonTest.UseVisualStyleBackColor = true;
-            this.buttonTest.Click += new System.EventHandler(this.buttonTest_Click);
+            this.buttonTest.Click += new System.EventHandler(this.ButtonTest_Click);
             // 
             // DisplayValueButton
             // 
@@ -84,7 +84,7 @@ namespace Dark_souls_Death_Counter
             this.LancerProgrammeButton.TabIndex = 4;
             this.LancerProgrammeButton.Text = "Lancer Programme";
             this.LancerProgrammeButton.UseVisualStyleBackColor = true;
-            this.LancerProgrammeButton.Click += new System.EventHandler(this.button1_Click_1);
+            this.LancerProgrammeButton.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // DeathCounter
             // 

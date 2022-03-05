@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -19,13 +20,14 @@ namespace Dark_souls_Death_Counter
         int left = 610;
         int up = 470;
         string result = "";
-        string filename = @"D:\DeathCounter\Deaths.txt";
+        
         int counter = 0;
         Bitmap captureBitmap;
         TesseractEngine engine;
         Rectangle captureRectangle;
         Graphics captureGraphics;
-        string testImagePath = @"D:\DeathCounter\Capture.jpg";
+       readonly string capturePath = @"D:\DeathCounter\Capture.bmp";
+       readonly string filename = @"D:\DeathCounter\Deaths.txt";
 
         public DeathCounter()
         {
@@ -35,6 +37,7 @@ namespace Dark_souls_Death_Counter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             if (!Directory.Exists(@"D:\DeathCounter"))
             {
                 Directory.CreateDirectory(@"D:\DeathCounter");
@@ -45,31 +48,26 @@ namespace Dark_souls_Death_Counter
             }
            else
             {
-                using(StreamWriter sw = File.CreateText(filename))
-                {
-                    sw.WriteLine("0");
-                    counter = int.Parse(File.ReadAllText(filename));
-                }
+                using StreamWriter sw = File.CreateText(filename);
+                sw.WriteLine("0");
+                counter = int.Parse(File.ReadAllText(filename));
             }
         }
         private void CaptureScreen()
         {
             try
             {
-                captureBitmap = new Bitmap(719, 105, PixelFormat.Format64bppArgb);
+                captureBitmap = new Bitmap(719, 105, PixelFormat.Format48bppRgb);
+                engine = new TesseractEngine("./tessdata", "fra", EngineMode.Default);
                 captureRectangle = Screen.AllScreens[0].Bounds;
                 captureGraphics = Graphics.FromImage(captureBitmap);
-                engine = new TesseractEngine("./tessdata", "fra", EngineMode.Default);
+                
                 captureGraphics.CopyFromScreen(captureRectangle.Left + left, captureRectangle.Top + up, 0, 0, captureRectangle.Size);
-                captureBitmap.Save(@"D:\DeathCounter\Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                captureBitmap.Save(@"D:\DeathCounter\Capture.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
 
-                var image = Pix.LoadFromFile(testImagePath);
+                var image = Pix.LoadFromFile(capturePath);
                 Page page = engine.Process(image, PageSegMode.Auto);
                 result = page.GetText();
-                captureBitmap = null;
-                engine = null;
-                image = null;
-                page = null;
             }
             catch (Exception ex)
             {
@@ -77,21 +75,21 @@ namespace Dark_souls_Death_Counter
             }
         }
         //Screenshot
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             CaptureScreen();
-            if(result.Contains("VOUS AVEZ PÉRI"))
+            if(result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
             {
-                MessageBox.Show("Trouvé");
+                MessageBox.Show(result);
             }
         }
         //AddLeft
-        private void button2_Click_1(object sender, EventArgs e)
+        private void Button2_Click_1(object sender, EventArgs e)
         {
             left += 10;
         }
         //AddTop
-        private void buttonTest_Click(object sender, EventArgs e)
+        private void ButtonTest_Click(object sender, EventArgs e)
         {
             up += 10;
         }
@@ -101,7 +99,7 @@ namespace Dark_souls_Death_Counter
             MessageBox.Show(left + " , " + up);
         }
         //LancerProgramme
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
             LaunchProgram();
         }
@@ -117,11 +115,13 @@ namespace Dark_souls_Death_Counter
             {
                     CaptureScreen();
                     GC.Collect();
-                if (result.Contains("VOUS AVEZ PÉRI"))
+                if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
                     {
                         AddToCounter();
-                        Thread.Sleep(10000);
+                        Debug.WriteLine("Trouvé" + DateTime.Now);
+                        Thread.Sleep(15000);
                         result = "";
+
                     }
                     else
                     {
