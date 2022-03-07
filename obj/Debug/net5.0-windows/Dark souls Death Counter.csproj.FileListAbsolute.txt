@@ -15,13 +15,13 @@ C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\
 C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\tessdata\eng.traineddata
 C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\tessdata\fra.traineddata
 C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\tessdata\pdf.ttf
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.exe
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.deps.json
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.runtimeconfig.json
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.runtimeconfig.dev.json
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.dll
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\ref\Elden ring Death Counter.dll
-C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\Elden ring Death Counter.pdb
-C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Elden ring Death Counter.dll
-C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\ref\Elden ring Death Counter.dll
-C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Elden ring Death Counter.pdb
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.exe
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.deps.json
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.runtimeconfig.json
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.runtimeconfig.dev.json
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.dll
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\ref\EldenRingDeathCounter.dll
+C:\Users\Siul008\source\repos\Dark souls Death Counter\bin\Debug\net5.0-windows\EldenRingDeathCounter.pdb
+C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\EldenRingDeathCounter.dll
+C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\ref\EldenRingDeathCounter.dll
+C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\EldenRingDeathCounter.pdb

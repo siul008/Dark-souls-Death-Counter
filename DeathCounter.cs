@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +34,6 @@ namespace Dark_souls_Death_Counter
        readonly string folderPath = @"D:\DeathCounter";
 
         static bool cancelWork = false;
-
 
         private static BackgroundWorker worker;
 
@@ -66,6 +66,8 @@ namespace Dark_souls_Death_Counter
                 counter = int.Parse(File.ReadAllText(filename));
                 todayCounter = 0;
                 File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
+            MortsAtmLabel.Text = "Morts Actuelles  = 0";
+            MortsTotalsLabel.Text = "Morts Totales = " + counter.ToString();
         }
         private void CaptureScreen()
         {
@@ -97,24 +99,33 @@ namespace Dark_souls_Death_Counter
             }
                 CaptureScreen();
                 GC.Collect();
-                if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
+            if (result.Contains("VOUS") || result.Contains("AVEZ") || result.Contains("PÉRI"))
+            {
+                AddToCounter();
+                Debug.WriteLine("Trouvé à  " + DateTime.Now);
+                Thread.Sleep(6000);
+                result = "";
+            }
+           #if DEBUG
+                if (Regex.IsMatch(result, "[A-Z]"))
                 {
-                    AddToCounter();
-                    Debug.WriteLine("Trouvé à  " + DateTime.Now);
-                    Thread.Sleep(15000);
-                    result = "";
+                    Debug.WriteLine(result);
+                File.AppendAllText(@"D:\DeathCounter\Logs.txt", result + "à " + DateTime.Now);
                 }
-                else
+           #endif
+            else
                 {
                     Thread.Sleep(50);
                 }
         }
         public void AddToCounter()
         {
+            
             todayCounter++;
             counter++;
             File.WriteAllText(filename, counter.ToString());
             File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
         }
 
         static void WorkerLoopCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -129,13 +140,21 @@ namespace Dark_souls_Death_Counter
             }
         }
 
+
         //LancerProgramme
         private void LaunchProgram_Click_1(object sender, EventArgs e)
         {
-            LancerProgrammeButton.Enabled = false;
-            DisplayValueButton.Enabled = true;
-            cancelWork = false;
-            worker.RunWorkerAsync();
+            if (worker.IsBusy != true)
+            {
+                LancerProgrammeButton.Enabled = false;
+                DisplayValueButton.Enabled = true;
+                cancelWork = false;
+                worker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez attendre quelques secondes puis réessayer");
+            }
         }
 
         //ArreterProgramme
@@ -167,12 +186,54 @@ namespace Dark_souls_Death_Counter
         private void OpenFolder_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", folderPath);
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
         }
 
         //Quitter Bouton
         private void TerminateButton_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+        private void UpdateUI(System.Windows.Forms.Label atmLab, System.Windows.Forms.Label totalLab)
+        {
+            if (atmLab.InvokeRequired)
+            {
+                atmLab.BeginInvoke(new MethodInvoker(() => UpdateUI(atmLab, totalLab)));
+            }
+            else
+            {
+                counter = int.Parse(File.ReadAllText(filename));
+                atmLab.Text = "Morts Actuelles  = " + todayCounter.ToString();
+                totalLab.Text = "Morts Totales = " + counter.ToString(); ;
+            }
+        }
+
+        private void totalDeathButtonMinus_Click(object sender, EventArgs e)
+        {
+            counter--;
+            File.WriteAllText(filename, counter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
+        }
+
+        private void totalDeathButtonPlus_Click(object sender, EventArgs e)
+        {
+            counter++;
+            File.WriteAllText(filename, counter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
+        }
+
+        private void atmDeathButtonPlus_Click(object sender, EventArgs e)
+        {
+            todayCounter++;
+            File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
+        }
+
+        private void atmDeathButtonMinus_Click(object sender, EventArgs e)
+        {
+            todayCounter--;
+            File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
         }
     }
 }

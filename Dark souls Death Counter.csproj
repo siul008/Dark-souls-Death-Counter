@@ -6,13 +6,14 @@
     <RootNamespace>Elden_Ring_Death_Counter</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Elden ring icon.ico</ApplicationIcon>
-    <AssemblyName>Elden Ring Death Counter</AssemblyName>
+    <AssemblyName>EldenRingDeathCounter</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Siul008.pfx</AssemblyOriginatorKeyFile>
     <Copyright>Siul008</Copyright>
     <Version>1.0.1</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <DelaySign>false</DelaySign>
+    <DelaySign>true</DelaySign>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
