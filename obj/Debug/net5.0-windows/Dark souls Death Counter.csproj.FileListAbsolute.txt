@@ -1,4 +1,3 @@
-C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Dark souls Death Counter.csproj.AssemblyReference.cache
 C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Dark souls Death Counter.csproj.GenerateResource.cache
 C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Dark souls Death Counter.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Siul008\source\repos\Dark souls Death Counter\obj\Debug\net5.0-windows\Dark souls Death Counter.AssemblyInfoInputs.cache

@@ -180,6 +180,7 @@ namespace Dark_souls_Death_Counter
         {
             todayCounter = 0;
             File.WriteAllText(filenameTodayDeath, todayCounter.ToString());
+            UpdateUI(MortsAtmLabel, MortsTotalsLabel);
         }
 
         //Ouvrir Dossier Bouton

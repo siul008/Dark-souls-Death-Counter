@@ -29,6 +29,7 @@ namespace Dark_souls_Death_Counter
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeathCounter));
             this.ScreenshotButton = new System.Windows.Forms.Button();
             this.DisplayValueButton = new System.Windows.Forms.Button();
             this.LancerProgrammeButton = new System.Windows.Forms.Button();
@@ -178,6 +179,7 @@ namespace Dark_souls_Death_Counter
             this.Controls.Add(this.LancerProgrammeButton);
             this.Controls.Add(this.DisplayValueButton);
             this.Controls.Add(this.ScreenshotButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeathCounter";
             this.Text = "EldenRing Death Counter";
             this.Load += new System.EventHandler(this.Form1_Load);
