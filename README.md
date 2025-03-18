@@ -43,11 +43,11 @@ This project was made at the release of the game where no anti cheat disable mod
 
 # File Structure
 
-D:\DeathCounter\
- ├── Capture.bmp      # Latest screenshot for OCR analysis
- ├── Deaths.txt       # Total death count
- ├── TodayDeaths.txt  # Death count for the current session
- ├── Logs.txt         # Debug logs (only in debug mode)
+- D:\DeathCounter\
+ - ├── Capture.bmp      # Latest screenshot for OCR analysis
+ - ├── Deaths.txt       # Total death count
+ - ├── TodayDeaths.txt  # Death count for the current session
+ - ├── Logs.txt         # Debug logs (only in debug mode)
 
 # Known Issues
 
