@@ -2,12 +2,12 @@
 
 # Overview
 
-Elden Ring Death Counter is a Windows Forms application designed to automatically detect and count player deaths in Dark Souls games. The application uses OCR (Optical Character Recognition) via Tesseract to detect death messages on the screen and maintain a death count.
+Elden Ring Death Counter is a Windows Forms application designed to automatically detect and count player deaths in Elden Ring games. The application uses OCR (Optical Character Recognition) via Tesseract to detect death messages on the screen and maintain a death count.
 This project was made at the release of the game where no anti cheat disable mod were available or for people that want a death counter without disabling the anti cheat of the game.
 
 # Features
 
-- Automatic Death Detection: Uses OCR to detect the "YOU DIED" screen in Dark Souls.
+- Automatic Death Detection: Uses OCR to detect the "YOU DIED" screen in Elden Ring.
 
 - Death Counter: Tracks both total deaths and daily deaths.
 
